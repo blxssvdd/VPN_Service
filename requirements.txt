@@ -1,0 +1,10 @@
+django
+django-allauth
+cryptography
+pyjwt
+pillow
+python-dotenv
+requests
+pymysql
+redis[hiredis]
+django-simple-captcha

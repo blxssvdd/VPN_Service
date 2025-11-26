@@ -26,7 +26,7 @@ MEDIA_URL = "media/"
 LOGIN_URL = "/accounts/login"
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = '/accounts/' # Перенаправляти на головну сторінку
+LOGIN_REDIRECT_URL = '/' # Перенаправляти на головну сторінку
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
