@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% load static %}
 <h1>Вітаю {{ request.user.username }} в нашому анонімному світі!</h1>
+
+<button id="myIdButton" class="myButton btn btn-success">Тицьни</button>
+<div class="message"></div>
+<script src="{% static 'js/index.js' %}"></script>
 {% endblock content %}

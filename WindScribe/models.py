@@ -9,11 +9,18 @@ from django.contrib.auth.models import User
 class Location(models.Model):
     location = models.CharField(max_length=100)
 
+    def __str__(self):
+        return f"Місто: {self.location}"
+
 
 class Subscription(models.Model):
     name = models.CharField(max_length=50)
     price = models.FloatField()
     locations = models.ManyToManyField(Location)
+    services = models.CharField(max_length=50, default="")
+
+    def __str__(self):
+        return f"Підписка: {self.name} -> ціна: {self.price} -> сервіси: {self.services}"
 
 
 class Service(models.Model):

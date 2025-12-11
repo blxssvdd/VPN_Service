@@ -21,8 +21,8 @@ load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-MEDIA_PATH = BASE_DIR / "media"
-MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
 LOGIN_URL = "/accounts/login"
 SITE_ID = 1
 
@@ -34,6 +34,18 @@ ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+# Social login: конфіг для Google і моментальний перехід без проміжного екрану
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": ["profile", "email"],
+        "AUTH_PARAMS": {"access_type": "offline"},
+    }
+}
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+SESSION_COOKIE_AGE = 1209600 # 2 тижні
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -64,6 +76,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'captcha',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -90,6 +104,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+            ],
+            'builtins': [
+                'django.templatetags.static',
             ],
         },
     },
