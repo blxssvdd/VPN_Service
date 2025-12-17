@@ -192,3 +192,7 @@ AUTHENTICATION_BACKENDS = [
     # allauth (для входу з логіном/email)
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://vpnservice-production.up.railway.app',
+]
