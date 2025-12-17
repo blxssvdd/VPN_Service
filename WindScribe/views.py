@@ -16,14 +16,12 @@ def get_subscriptions(request: HttpRequest):
     form = SubForm(data=request.POST or None)
     if request.method == "POST" and form.is_valid():
         subscription: Subscription = form.cleaned_data.get("sub")
-        service = Service(user=request.user, subscription=subscription)
+        service, _ = Service.objects.get_or_create(user=request.user)
 
-        if "ipv_4_local" in subscription.services:
-            service.ipv_4_local = fake.ipv4_private()
-        if "ipv_4_ext" in subscription.services:
-            service.ipv_4_ext = fake.ipv4_public()
-        if "ipv_6" in subscription.services:
-            service.ipv_6 = fake.ipv6()
+        service.ipv_4_local = fake.ipv4_private() if "ipv_4_local" in subscription.services else None
+        service.ipv_4_ext = fake.ipv4_public() if "ipv_4_ext" in subscription.services else None
+        service.ipv_6 = fake.ipv6() if "ipv_6" in subscription.services else None
+        service.subscription = subscription
 
         service.save()
         return redirect("index")

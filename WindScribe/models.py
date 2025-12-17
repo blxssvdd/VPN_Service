@@ -24,7 +24,7 @@ class Subscription(models.Model):
 
 
 class Service(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     ipv_4_ext = models.GenericIPAddressField(unique=True, null=True, blank=True, default=None)
     price_per_month_4_ext = models.FloatField(default=0)
     ipv_4_local = models.GenericIPAddressField(unique=True, null=True, blank=True, default=None)
